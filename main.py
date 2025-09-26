@@ -41,13 +41,13 @@ async def check_translation():
     elements_dict = {}
     screenshots = {}
     serial_counter = 1
-    drivers = {}  # Store drivers for each language
+    drivers = {}  
 
     for lang, data in languages.items():
         logger.info(f"Setting Chrome language to {data['lang']} for Facebook")
         options = Options()
         options.add_argument("--headless=new")
-        options.add_argument("--window-size=2560,1440")  # Higher resolution for clearer screenshots
+        options.add_argument("--window-size=2560,1440")  
         options.add_argument(f"--lang={data['lang']}")
         options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
         options.add_experimental_option("prefs", {
@@ -83,7 +83,7 @@ async def check_translation():
         except Exception as e:
             report["ui_issues"].append(f"Processing error for {lang} on Facebook: {str(e)}")
             logger.error(f"Processing error for {lang} on Facebook: {str(e)}")
-        # Do not quit driver yet, keep it for translation issue screenshots
+        
 
     if "english" in elements_dict and "spanish" in elements_dict:
         matched_pairs = match_elements(elements_dict["english"], elements_dict["spanish"], model=model)
@@ -91,7 +91,7 @@ async def check_translation():
         matched_pairs = []
         logger.warning("No elements extracted for matching")
 
-    # Capture screenshots for translation issues (score < 0.85)
+  
     for idx, (eng, spa) in enumerate(matched_pairs, start=1):
         if eng and spa and spa['text'] != "N/A":
             score_dict = client.chat.completions.create(
@@ -124,7 +124,7 @@ async def check_translation():
         if overall_ssim < 0.85:
             report["ui_issues"].append(f"Significant overall UI differences detected (SSIM: {overall_ssim:.2f}).")
 
-    # Clean up drivers
+    
     for driver in drivers.values():
         driver.quit()
 
