@@ -1,0 +1,17 @@
+fastapi # Web framework for building asynchronous APIs; used for backend endpoints. 
+uvicorn # ASGI server to run FastAPI; enables production-ready serving. 
+pymupdf # Library for PDF parsing; fast text extraction for large PDFs. 
+pdfplumber # PDF parsing; handles complex layouts as a fallback to PyMuPDF. 
+spacy # NLP library; used for sentence segmentation in English and Spanish. 
+sentence-transformers # Generates multilingual sentence embeddings for alignment. 
+evaluate # Hugging Face library for metrics like BERTScore and COMET integration. 
+unbabel-comet # Provides COMET-QE for translation quality scoring. 
+torch # Deep learning framework; backend for sentence-transformers, unbabel-comet. 
+pandas # Data analysis; generates CSV/Excel reports from comparison results. 
+openai # Client for OpenAI API; used for back-translation in alignment fallback. 
+python-multipart # Parses multipart/form-data; handles PDF file uploads in FastAPI. 
+scikit-learn # Provides cosine_similarity for back-translation scoring. 
+sqlalchemy # ORM for database interactions with MySQL. 
+pymysql # MySQL driver for SQLAlchemy. 
+python-dotenv # Loads environment variables from .env file. 
+bert_score # Computes BERTScore for supplementary similarity scoring in translation evaluation.
